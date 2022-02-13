@@ -1,0 +1,35 @@
+<div id="hot-deals">
+  <ion-item-divider color="white" class="ion-padding" [class]="id_lang == 0 ? 'pr' : ''">
+    <ion-label color="dark" class="text-bold" *ngIf="id_lang == 0 else arabicLabel">Our celebrities</ion-label>
+    <ion-button *ngIf="id_lang == 0 else arabicButton" class="ion-margin-end" size="small" slot="end" color="color1" routerLink="/displayAll/categories"
+      routerDirection="root">Sell All</ion-button>
+  </ion-item-divider>
+
+  <ion-slides [options]="slideOpts" class="ion-padding-top">
+    <ion-slide *ngFor="let item of images">
+      <ion-grid class="ion-no-padding">
+        <ion-row class="ion-no-padding">
+          <ion-col>
+            <ion-card class="ion-no-padding">
+              <img [src]="item.id" />
+              <ion-card-title _ngcontent-nvf-c146="" class="ion-padding-bottom ion-inherit-color md hydrated" role="heading" aria-level="2">
+                {{item.name}}
+              </ion-card-title>
+              <ion-card-header>
+                <ion-card-subtitle></ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</div>
+
+<ng-template #arabicLabel>
+  <ion-label color="dark" class="text-bold flr">مشاهيرنا</ion-label>
+</ng-template>
+<ng-template #arabicButton>
+  <ion-button class="ion-margin-end" size="small" slot="start" color="color1" routerLink="/displayAll/categories"
+  routerDirection="root">إظهار الكل</ion-button>
+</ng-template>

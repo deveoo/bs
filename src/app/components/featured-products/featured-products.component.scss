@@ -1,0 +1,50 @@
+#featured-products {
+    .card {
+        height: 240px;
+    }
+    .card-img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 150px;
+    }
+
+    .product-name {
+        padding: 0;
+        text-align: left;
+
+        h4 {
+            font-size: 1rem;
+            color: rgba(8, 8, 8, 0.58);
+        }
+    }
+
+    .previous-price {
+        text-decoration: line-through;
+        font-size: 0.8rem;
+    }
+
+    ion-fab-button {
+        --background: transparent;
+        --background-focused: transparent;
+        --background-activated: transparent;
+    }
+
+    .text-bold {
+        font-weight: bold;
+    }
+    ion-item-divider {
+        padding-bottom: 0 !important;
+    }
+    .flr {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+    }
+    .pr {
+        padding-right: 0 !important;
+    }
+    ion-card {
+        height: 240px;
+    }
+}

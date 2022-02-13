@@ -1,0 +1,48 @@
+#category {
+    ion-list {
+        margin-bottom: 0px !important;
+    }
+
+    .item {
+        ion-thumbnail {
+            width: 140px;
+            height: 90px;
+
+            img {
+                width: 140px;
+                height: 90px;
+                border-radius: 5px;
+            }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+        }
+    }
+    .card {
+        text-align: center;
+        height: 225px;   
+    }
+    .category_img {
+        display: block;
+        margin: auto;
+    }
+    .category_title {
+        font-size: 13px;
+    }
+    .categories_btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .categories_btns.ar {
+        display: grid;
+        grid-template-columns: 33% 15%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .category_img.list img {
+        width: 50%;
+        margin: auto;
+    }
+}

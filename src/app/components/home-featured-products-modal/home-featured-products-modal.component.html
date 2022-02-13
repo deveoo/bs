@@ -1,0 +1,39 @@
+<!--
+  - Product Details Screen
+  - @author    ThemesBuckets <themebucketbd@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   ThemesBuckets
+-->
+
+<!-- Header -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="color1">
+
+    <!-- Back to previous page -->
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" (click)="dismiss()" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Title -->
+    <ion-title>##########{{product.name}}</ion-title> 
+
+    <!-- Cart Page Button -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<!-- Footer -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="ion-padding" transparent>
+    <!-- Add To Cart Button -->
+    <ion-button class="add-to-cart" color="color1" expand="block" (click)="addToCart()">ADD TO CART
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,10 @@
+{
+    "/*": {
+      "target": "https://www.bs.version-recette.com",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }

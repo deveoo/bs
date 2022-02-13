@@ -1,0 +1,7 @@
+#searchbar {
+    background:var(--ion-color-color1); 
+    ion-searchbar {
+        --background: var(--ion-color-white);
+        --border-radius:  25px !important;
+    }
+}

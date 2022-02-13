@@ -1,0 +1,36 @@
+#categories {
+    ion-fab-button {
+        --background: transparent;
+        --background-focused: transparent;
+        --background-activated: transparent;
+    }
+
+    ion-card-title {
+        font-size: 1rem;
+    }
+
+    .card-img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 150px;
+    }
+
+    .text-bold {
+        font-weight: bold;
+    }
+    ion-item-divider {
+        padding-bottom: 0 !important;
+    }
+    .flr {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+    }
+    .pr {
+        padding-right: 0 !important;
+    }
+    ion-card {
+        height: 240px;
+    }
+}

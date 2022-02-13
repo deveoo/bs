@@ -1,0 +1,45 @@
+<!--
+  - Notification Screen
+  - @author    ThemesBuckets <themebucketbd@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   ThemesBuckets
+-->
+
+<!-- Header -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="tabs/tab2"></ion-back-button>
+    </ion-buttons>
+
+    <!-- Page Title -->
+    <ion-title>{{catName}}</ion-title>
+
+    <!-- Cart Button Option -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="notifications">
+  <div class="ion-padding-vertical">
+  <div *ngIf="subcatById.length > 0;else alertEvents">
+  <div *ngFor="let item of subcatById"class="category-block">
+      <ion-row no-padding class="category-banner" (click)="gotoProductPage(item.id)">
+        <ion-col text-left align-self-center>
+          {{item.name[0].value}}
+        </ion-col>
+      </ion-row>
+  </div>
+</div>
+<ng-template #alertEvents>
+  <app-shared-item></app-shared-item>
+</ng-template>
+</div>
+</ion-content>

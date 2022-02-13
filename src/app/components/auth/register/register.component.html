@@ -1,0 +1,144 @@
+<ion-header class="ion-no-border" *ngIf="id_lang == 1 else arabicHeader">
+  <ion-toolbar>
+    <ion-title mode="ios">Register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="color1" default-href="" text="" icon="arrow-back" (click)="goBack()">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ng-template #arabicHeader>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title mode="ios">تسجيل</ion-title>
+      <ion-buttons slot="end">
+        <ion-back-button color="color1" default-href="" text="" icon="arrow-forward" (click)="goBack()">
+        </ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ng-template>
+
+<ion-content id="signin" fullscreen *ngIf="id_lang == 1 else arabicTemplate">
+
+  <div class="section_two ion-padding">
+    <img class="ion-padding logo" src="assets/images/buqsha-store-logo.jpeg" />
+
+    <form class="ion-padding" [formGroup]="registerForm">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" formControlName="firstname" placeholder="Firstname"></ion-input>
+      </ion-item>
+      <div class="error-container" *ngIf="registerForm.get('firstname').invalid && (registerForm.get('firstname').dirty || registerForm.get('firstname').touched)">
+        <span *ngIf="registerForm.get('firstname').errors.required">
+          Firstname is required
+        </span>
+      </div>
+      <ion-item>
+        <ion-label>
+          <ion-icon name="person" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" formControlName="lastname" placeholder="Lastname"></ion-input>
+      </ion-item>
+      <div class="error-container" *ngIf="registerForm.get('lastname').invalid && (registerForm.get('lastname').dirty || registerForm.get('lastname').touched)">
+        <span *ngIf="registerForm.get('lastname').errors.required">
+          Lastname is required
+        </span>
+      </div>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="mail" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <div class="error-container" *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+        <span *ngIf="registerForm.get('email').errors.required">
+          Email is required
+        </span>
+        <span *ngIf="registerForm.get('email').errors.pattern">
+          Please enter a valid email address
+        </span>
+      </div>
+
+      <ion-item>
+        <ion-label>
+          <ion-icon name="eye" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="password" formControlName="password" placeholder="password"></ion-input>
+      </ion-item>
+
+      <div class="buttons ion-padding-top">
+        <ion-button expand="block" color="color1" (click)="onSignUp()">
+          <ion-text><strong>SIGN UP</strong></ion-text>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+<ng-template #arabicTemplate>
+  <ion-content id="signup" fullscreen>
+
+    <div class="section_two ion-padding">
+      <img class="ion-padding logo" src="assets/images/buqsha-store-logo.jpeg" />
+  
+      <form class="ion-padding" [formGroup]="registerForm">
+        <ion-item class="ion-text-end">
+          <ion-input type="text" formControlName="firstname" placeholder="الإسم الأول"></ion-input>
+          <ion-label>
+            <ion-icon name="person" color="color2"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.get('firstname').invalid && (registerForm.get('firstname').dirty || registerForm.get('firstname').touched)">
+          <span *ngIf="registerForm.get('firstname').errors.required" class="float">
+            الإسم الأول مطلوب
+          </span>
+        </div>
+        <ion-item class="ion-text-end"> 
+          <ion-input type="text" formControlName="lastname" placeholder="إسم العائلة"></ion-input>
+          <ion-label>
+            <ion-icon name="person" color="color2"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.get('lastname').invalid && (registerForm.get('lastname').dirty || registerForm.get('lastname').touched)">
+          <span *ngIf="registerForm.get('lastname').errors.required" class="float">
+            إسم العائلة مطلوب
+          </span>
+        </div>
+  
+        <ion-item class="ion-text-end">
+          <ion-input type="text" formControlName="email" placeholder="البريد الالكتروني"></ion-input>
+          <ion-label>
+            <ion-icon name="mail" color="color2"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <div class="error-container" *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+          <span *ngIf="registerForm.get('email').errors.required" class="float">
+            البريد الالكتروني مطلوب
+          </span>
+          <span *ngIf="registerForm.get('email').errors.pattern" class="float">
+            يرجى إدخال عنوان بريد إلكتروني صالح
+          </span>
+        </div>
+  
+        <ion-item class="ion-text-end"> 
+          <ion-input type="password" formControlName="password" placeholder="كلمه السر"></ion-input>
+          <ion-label>
+            <ion-icon name="eye" color="color2"></ion-icon>
+          </ion-label>
+        </ion-item>
+  
+        <div class="buttons ion-padding-top">
+          <ion-button expand="block" color="color1" (click)="onSignUp()">
+            <ion-text><strong>اشتراك</strong></ion-text>
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+  
+</ng-template>

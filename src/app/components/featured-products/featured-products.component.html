@@ -1,0 +1,41 @@
+<div id="featured-products">
+  <ion-item-divider color="white" class="ion-padding" [class]="id_lang == 1 ? 'pr' : ''">
+    <ion-label color="dark" class="text-bold" *ngIf="id_lang == 1 else arabicLabel">Feautured products</ion-label>
+    <ion-button *ngIf="id_lang == 1 else arabicButton" class="ion-margin-end" size="small" slot="end" color="color1" routerLink="/displayAll/categories"
+      routerDirection="root">Sell All</ion-button>
+  </ion-item-divider>
+
+  <ion-slides [options]="slideOpts" class="ion-padding-top">
+    <ion-slide *ngFor="let item of products">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="ion-no-margin card"  (click)="goToProductDetails(item.id)">
+              <div class="card-img" [style.background-image]="'url(' + item.cover_url + ')'" (click)="goToProductDetails(item)"></div>
+              <!--<ion-fab vertical="top" horizontal="end">
+                <ion-fab-button>
+                  <ion-icon color="color1" name="heart-outline" *ngIf="!item.isWishlist"></ion-icon>
+                  <ion-icon color="color1" name="heart" *ngIf="item.isWishlist"></ion-icon>
+                </ion-fab-button>
+              </ion-fab>-->
+
+              <ion-card-content>
+                <ion-row class="product-name"> 
+                  <h4>{{item.name | slice:0:20}}</h4>
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+</div>
+
+<ng-template #arabicLabel>
+  <ion-label color="dark" class="text-bold flr">منتجات مميزة</ion-label>
+</ng-template>
+<ng-template #arabicButton>
+  <ion-button class="ion-margin-end" size="small" slot="start" color="color1" routerLink="/displayAll/categories"
+  routerDirection="root">إظهار الكل</ion-button>
+</ng-template>

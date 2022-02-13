@@ -1,0 +1,158 @@
+<!-- Header -->
+<ion-header class="ion-no-border">
+    <ion-toolbar color="color1">
+
+        <!-- Side Menu Option -->
+        <ion-buttons [slot]="id_lang == 1 ? 'start' : 'end'">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+
+        <!-- Title of page -->
+        <ion-title>{{categoryName}}</ion-title>
+
+        <!-- Product Filter Option -->
+        <!--<ion-buttons slot="end">
+            <ion-button color="white" (click)="openFilterPage()">
+                <ion-icon name="funnel"></ion-icon>
+            </ion-button>
+        </ion-buttons>-->
+          <!-- Cart Button Option -->
+        <ion-buttons [slot]="id_lang == 1 ? 'end' : 'start'">
+            <ion-button color="white" (click)="gotoCartPage()">
+            <ion-icon name="cart"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+
+<!-- Contents -->
+<ion-content id="products" class="ion-padding" [scrollEvents]="true" (ionScrollStart)="logScrollStart($event)">
+
+ <!-- Category View Options -->
+ <div class="ion-text-end categories_btns" *ngIf="id_lang == 1 else arabicButtons">
+    <div class="back">
+      <ion-back-button color="color1" default-href="" text="" icon="arrow-back" routerLink="/subcategory/{{parentID}}"
+       routerDirection="root">
+      </ion-back-button>
+    </div> 
+    
+    <div class="top">
+      <ion-back-button *ngIf="displayScrollButtn && categoryProducts.length > 4" color="color1" default-href="" text="" icon="arrow-up" (click)="ScrollToTop()">
+      </ion-back-button>
+    </div>
+    
+    <div class="options">
+       <!-- One Column Option -->
+      <ion-button fill="clear" [color]="oneColumn ? 'color1' : 'color2'" class="ion-no-padding" (click)="showOneColumn()">
+        <ion-icon slot="icon-only" name="square"></ion-icon>
+      </ion-button>
+
+      <!-- Grid View Option -->
+      <ion-button fill="clear" [color]="grid ? 'color1' : 'color2'" class="ion-no-padding" (click)="showGrid()">
+        <ion-icon slot="icon-only" name="grid"></ion-icon>
+      </ion-button>
+
+      <!-- List view option -->
+      <ion-button fill="clear" [color]="list ? 'color1' : 'color2'" class="ion-no-padding" (click)="showList()">
+        <ion-icon slot="icon-only" name="list"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <ng-template #arabicButtons>
+    <div class="ion-text-end categories_btns ar">
+      <div class="options">
+        <!-- One Column Option -->
+       <ion-button fill="clear" [color]="oneColumn ? 'color1' : 'color2'" class="ion-no-padding" (click)="showOneColumn()">
+         <ion-icon slot="icon-only" name="square"></ion-icon>
+       </ion-button>
+ 
+       <!-- Grid View Option -->
+       <ion-button fill="clear" [color]="grid ? 'color1' : 'color2'" class="ion-no-padding" (click)="showGrid()">
+         <ion-icon slot="icon-only" name="grid"></ion-icon>
+       </ion-button>
+ 
+       <!-- List view option -->
+       <ion-button fill="clear" [color]="list ? 'color1' : 'color2'" class="ion-no-padding" (click)="showList()">
+         <ion-icon slot="icon-only" name="list"></ion-icon>
+       </ion-button>
+     </div>
+      <div class="back">
+        <ion-back-button color="color1" default-href="" text="" icon="arrow-forward" routerLink="/subcategory/{{parentID}}"
+         routerDirection="root">
+        </ion-back-button>
+      </div> 
+      <div class="top">
+        <ion-back-button *ngIf="displayScrollButtn && categoryProducts.length > 4" color="color1" default-href="" text="" icon="arrow-up" (click)="ScrollToTop()">
+        </ion-back-button>
+      </div>
+    </div>
+  </ng-template>
+  <!-- End Category View Options -->
+
+
+    <!-- Grid View Contents -->
+    <ion-grid id="grid" *ngIf="grid">
+        <ion-row>
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let item of categoryProducts">
+                <ion-card class="ion-no-margin card" (click)="goToProductDetails(item.id)">
+                    <input type="hidden" value="{{item.id}}">
+                    <ion-img *ngIf="item.mainImage" [src]="item.mainImage" class="product_img"></ion-img>
+                    <ion-card-content>
+                        <ion-row>
+                            <h4 class="product-name">{{item.name[id_lang - 1].value | slice:0:20}}</h4>
+                        </ion-row>
+                        <ion-row>
+                            <ion-text color="color1">QAR{{item.price| slice:0:6}} &nbsp;</ion-text>
+                        </ion-row>     
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- One Column View Contents -->
+    <ion-grid id="oneColumn" *ngIf="oneColumn">
+        <ion-row>
+            <ion-col size="12" *ngFor="let item of categoryProducts">
+                <ion-card class="ion-no-margin on-c-card">
+                    <ion-img *ngIf="item.mainImage" [src]="item.mainImage" class="product_img"></ion-img>
+                    <ion-card-content (click)="goToProductDetails(item)">
+                        <ion-row>
+                            <h4 class="on-c-product-name">{{item.name[id_lang - 1].value | slice:0:20}}</h4>
+                            <div class="product-description" [innerHTML]="item.description_short[0].value"></div>
+                        </ion-row>
+                        <ion-row>
+                            <ion-text color="color1">QAR{{item.price| slice:0:6}} &nbsp;</ion-text>
+                        </ion-row>     
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- List View Contents -->
+    <div id="list" *ngIf="list">
+        <ion-card *ngFor="let item of categoryProducts">
+            <ion-list lines="none" (click)="goToProductDetails(item)">
+                <ion-item class="ion-no-padding">
+
+                    <!-- Product Image -->
+                    <ion-thumbnail slot="start">
+                        <ion-img style="vertical-align: middle;" *ngIf="item.mainImage" [src]="item.mainImage" class="product_img"></ion-img>
+                    </ion-thumbnail>
+                    <!-- Product Contents -->
+                    <ion-label class="ion-text-wrap">
+                        <ion-row>
+                            <h4 class="product-name">{{item.name[id_lang - 1].value | slice:0:20}}</h4>
+                        </ion-row>
+                        <ion-row>
+                            <ion-text color="color1">QAR{{item.price | slice:0:6}} &nbsp;</ion-text>
+                        </ion-row>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+    </div>
+</ion-content>

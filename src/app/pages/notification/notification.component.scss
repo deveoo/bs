@@ -1,0 +1,21 @@
+#notifications {
+    .unread {
+        --background: var(--ion-color-light);
+    }
+    .category-block {
+        margin-bottom: 4px;
+        color: var(--ion-color-color1);
+        text-transform: capitalize;
+        .description{
+            --font-weight: 10px;
+        }
+    }
+     
+    .category-banner {
+        border-left: 8px solid var(--ion-color-color1);
+        background: var(--ion-color-light);
+        height: 50px;
+        padding: 10px;
+        font-weight: 12px;
+    }
+}

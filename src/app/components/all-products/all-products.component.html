@@ -1,0 +1,101 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="color1">
+
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+
+      <ion-title>All products</ion-title>
+
+     
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content id="products" [scrollEvents]="true" (ionScrollStart)="logScrollStart($event)">
+
+  <div class="ion-text-end categories_btns">
+      <div class="back">
+          <ion-back-button color="color1" default-href="" text="" icon="arrow-back" routerLink="/tabs/tab1"
+           routerDirection="root">
+          </ion-back-button>
+      </div> 
+      <div class="top">
+        <ion-back-button *ngIf="displayScrollButtn" color="color1" default-href="" text="" icon="arrow-up" (click)="ScrollToTop()">
+        </ion-back-button>
+      </div>
+      <div class="options">
+          <ion-button fill="clear" [color]="oneColumn ? 'color1' : 'color2'" class="ion-no-padding"
+              (click)="showOneColumn()">
+              <ion-icon slot="icon-only" name="square"></ion-icon>
+          </ion-button>
+
+          <ion-button fill="clear" [color]="grid ? 'color1' : 'color2'" class="ion-no-padding" (click)="showGrid()">
+              <ion-icon slot="icon-only" name="grid"></ion-icon>
+          </ion-button>
+
+          <ion-button fill="clear" [color]="list ? 'color1' : 'color2'" class="ion-no-padding" (click)="showList()">
+              <ion-icon slot="icon-only" name="list"></ion-icon>
+          </ion-button>
+      </div>
+  </div>
+
+
+  <ion-grid id="grid" *ngIf="grid">
+      <ion-row>
+          <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let item of products">
+              <ion-card class="ion-no-margin card" (click)="goToProductDetails(item.id)">
+                  <input type="hidden" value="{{item.id}}">
+                  <ion-img *ngIf="item.mainImage" [src]="item.mainImage" class="product_img"></ion-img>
+                  <ion-card-content>
+                      <ion-row>
+                          <h4 class="product-name">{{item.name[0].value | slice:0:20}}</h4>
+                      </ion-row>
+                      <ion-row>
+                          <ion-text color="color1">QAR{{item.price| slice:0:6}} &nbsp;</ion-text>
+                      </ion-row>     
+                  </ion-card-content>
+              </ion-card>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <ion-grid id="oneColumn" *ngIf="oneColumn">
+      <ion-row>
+          <ion-col size="12" *ngFor="let item of products">
+              <ion-card class="ion-no-margin on-c-card">
+                  <ion-img *ngIf="item.mainImage" [src]="item.mainImage" class="product_img"></ion-img>
+                  <ion-card-content (click)="goToProductDetails(item)">
+                      <ion-row>
+                          <h4 class="on-c-product-name">{{item.name[0].value | slice:0:20}}</h4>
+                          <div class="product-description" [innerHTML]="item.description_short[0].value"></div>
+                      </ion-row>
+                      <ion-row>
+                          <ion-text color="color1">QAR{{item.price| slice:0:6}} &nbsp;</ion-text>
+                      </ion-row>     
+                  </ion-card-content>
+              </ion-card>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  <div id="list" *ngIf="list">
+      <ion-card *ngFor="let item of products">
+          <ion-list lines="none" (click)="goToProductDetails(item)">
+              <ion-item class="ion-no-padding">
+
+                <ion-img *ngIf="item.mainImage" [src]="item.mainImage" class="product_img"></ion-img>
+
+                  <ion-label class="ion-text-wrap">
+                      <ion-row>
+                          <h4 class="product-name">{{item.name[0].value | slice:0:20}}</h4>
+                      </ion-row>
+                      <ion-row>
+                          <ion-text color="color1">QAR{{item.price | slice:0:6}} &nbsp;</ion-text>
+                      </ion-row>
+                  </ion-label>
+              </ion-item>
+          </ion-list>
+      </ion-card>
+  </div>
+</ion-content>

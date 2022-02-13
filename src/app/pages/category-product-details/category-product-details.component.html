@@ -1,0 +1,90 @@
+<!--
+  - Product Details Screen
+  - @author    ThemesBuckets <themebucketbd@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   ThemesBuckets
+-->
+
+<!-- Header -->
+<ion-header class="ion-no-border" *ngIf="id_lang == 1 else arabicHeader">
+  <ion-toolbar color="color1">
+
+    <!-- Back to previous page -->
+    <ion-buttons slot="start">
+      <ion-back-button color="white" default-href="" routerLink="/products/{{product.id_category_default}}" text="" icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+
+    <!-- Title -->
+    <ion-title>{{product.name}}</ion-title>
+
+    <!-- Cart Page Button -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ng-template #arabicHeader> 
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="color1">
+  
+          <!-- Cart Page Button -->
+          <ion-buttons slot="start">
+            <ion-button color="white" (click)="gotoCartPage()">
+              <ion-icon name="cart"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+      <!-- Back to previous page -->
+     
+  
+      <!-- Title -->
+      <ion-title>{{product.name}}</ion-title>
+  
+      <ion-buttons slot="end">
+        <ion-back-button color="white" default-href="" routerLink="/products/{{product.id_category_default}}" text="" icon="arrow-forward">
+        </ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ng-template>
+
+<!-- Main Contents of Page -->
+<ion-content id="product-details" fullscreen>
+  <div class="slider">
+    <!-- Slider of Product Images -->
+    <!--<ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let item of images">
+        <img [src]="item" />
+      </ion-slide>
+    </ion-slides>-->
+    <ion-img *ngIf="product.img" [src]="product.img"></ion-img>
+    </div>
+    <!-- Product Price -->
+    <ion-row class="ion-padding">
+      <ion-text color="color1" class="price">QAR {{product.price| slice:0:6}} &nbsp;</ion-text>
+      <!-- <span class="previous-price"> ${{price}}</span>-->
+    </ion-row>
+  
+    <!-- Product Name -->
+    <ion-row class="ion-padding-start product-name">
+      <ion-text>{{product.name}}</ion-text>
+    </ion-row>
+  
+    <!-- Product Description -->
+    <ion-row class="ion-padding">
+      <ion-text color="medium" [innerHTML]="product.description"></ion-text>
+    </ion-row>
+  
+  </ion-content>
+
+<!-- Footer -->
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="ion-padding" transparent>
+    <!-- Add To Cart Button -->
+    <ion-button class="add-to-cart" color="color1" expand="block" (click)="addToCart()">ADD TO CART
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

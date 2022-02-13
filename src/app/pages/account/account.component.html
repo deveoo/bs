@@ -1,0 +1,229 @@
+<!--
+  - Account Screen
+  - @author    ThemesBuckets <themebucketbd@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   ThemesBuckets
+-->
+
+<!-- Header -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="color1">
+
+    <!-- Side Menu -->
+    <ion-buttons [slot]="id_lang == 1 ? 'start' : 'end'">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Page title -->
+    <ion-title *ngIf="id_lang == 1 else arabicTitle">Account</ion-title>
+    <ng-template #arabicTitle>
+      <ion-title class="ion-text-end">الحساب</ion-title>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Contents -->
+<ion-content id="account" class="ion-padding" *ngIf="id_lang == 1 else arabicTemplate">
+
+  <!-- User/Profile Infos -->
+  <ion-item lines="none">
+    <!-- Avatar/Image of User -->
+
+    <!-- Name of User -->
+    <ion-label>
+      <h2 class="ion-text-center">{{ AppUser.firstname }} {{ AppUser.lastname }}</h2>
+    </ion-label>
+  </ion-item>
+
+  <!-- Some Menu Options -->
+  <ion-card>
+    <ion-grid>
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <ion-icon name="heart" style="zoom:1.5;"></ion-icon><br />
+          <ion-text>Wish List</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-icon name="checkbox-outline" style="zoom:1.5;"></ion-icon><br />
+          Orders
+        </ion-col>
+        <ion-col>
+          <ion-icon name="cart" style="zoom:1.5;"></ion-icon><br />
+          Cart
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <!-- Some Orders Option -->
+  <ion-card>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Orders</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Unpaid</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>To be shipped</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Shipped</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>To be reviewed</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>In dispute</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+
+  <ion-card>
+    <ion-item-group>
+      <ion-item lines="none">
+        <ion-label>Wallet</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Shipping Address</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Redeem invite code</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Questions & Answers</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+
+  <ion-card>
+    <ion-item-group>
+      <ion-item lines="none">
+        <ion-label>Settings</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>App Suggestion</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Help Center</ion-label>
+        <ion-icon name="arrow-forward" size="small" slot="end"></ion-icon>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+</ion-content>
+
+
+<ng-template #arabicTemplate>
+  <ion-content id="account" class="ion-padding">
+
+    <!-- User/Profile Infos -->
+    <ion-item lines="none" class="ion-text-end">
+      <!-- Avatar/Image of User -->
+  
+      <!-- Name of User -->
+      <ion-label>
+        <h2 class="ion-text-center">{{ AppUser.firstname }} {{ AppUser.lastname }}</h2>
+      </ion-label>
+    </ion-item>
+  
+    <!-- Some Menu Options -->
+    <ion-card>
+      <ion-grid>
+        <ion-row class="ion-text-center">
+          <ion-col>
+            <ion-icon name="heart" style="zoom:1.5;"></ion-icon><br />
+            <ion-text class="float-r">قائمة الرغبات</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-icon name="checkbox-outline" style="zoom:1.5;"></ion-icon><br />
+            الطلبات
+          </ion-col>
+          <ion-col>
+            <ion-icon name="cart" style="zoom:1.5;"></ion-icon><br />
+            عربة التسوق
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  
+    <!-- Some Orders Option -->
+    <ion-card>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label>الطلبات</ion-label>
+        </ion-item-divider>
+  
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>غير مدفوعة</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>ليتم شحنها</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>تم شحنها </ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>للمراجعة</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>في النزاع</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+      </ion-item-group>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item-group>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>محفظة نقود</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>عنوان الشحن</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>استرداد رمز الدعوة</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>أسئلة و أجوبة</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+      </ion-item-group>
+    </ion-card>
+  
+    <ion-card>
+      <ion-item-group>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>إعدادات</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>اقتراح التطبيق</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" class="ion-text-end">
+          <ion-label>مركز المساعدة</ion-label>
+          <ion-icon name="arrow-back" size="small" slot="start"></ion-icon>
+        </ion-item>
+      </ion-item-group>
+    </ion-card>
+  </ion-content>
+</ng-template>

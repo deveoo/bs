@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-menu [side]="id_lang == 1 ? 'start' : 'end' " menuId="pages" type="overlay" contentId="mainContent">
+
+    <!-- Header -->
+    <ion-header>
+      <ion-toolbar>
+        <ion-row>
+          <ion-col class="text-content">
+            <img src="assets/images/logo.png">
+          </ion-col>
+        </ion-row>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Content Options -->
+    <!-- Menus -->
+    <ion-content>
+      <ion-list class="ion-padding" lines="none">
+        <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-icon size="small" [slot]="id_lang == 1 ? 'start' : 'end' " [name]="p.icon"></ion-icon>
+            <ion-label [class]="id_lang == 1 ? 'ion-text-start' : 'ion-text-end' ">
+              {{p.title}}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-item>
+          <ion-toggle *ngIf="id_lang == 1" checked="false" (ionChange)="swicthLang()" class="pl"></ion-toggle>
+          <ion-label [class]="id_lang == 1 ? 'ion-text-start' : 'ion-text-end' " *ngIf="id_lang == 1 else lanSwitchElse">Arabic</ion-label>
+          <ion-toggle *ngIf="id_lang != 1" checked="false" (ionChange)="swicthLang()" class="pr"></ion-toggle>
+        </ion-item>
+
+        <ng-template #lanSwitchElse>
+          <ion-label class="ion-text-end">الإنجليزية</ion-label>
+       </ng-template>
+
+      </ion-list>
+
+    </ion-content>
+
+    <!-- Footer -->
+    <ion-footer class="ion-no-border">
+      <div class="ion-padding">
+        <ion-button color="color1" expand="block" (click)="signout()" *ngIf="id_lang == 1 else signOutTemplate">
+          Signout
+        </ion-button>
+        <ng-template #signOutTemplate>
+          <ion-button color="color1" expand="block" (click)="signout()">
+            تسجيل الخروج 
+          </ion-button>
+        </ng-template>
+      </div>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="mainContent"></ion-router-outlet>
+</ion-app>

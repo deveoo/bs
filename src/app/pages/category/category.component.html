@@ -1,0 +1,126 @@
+<!--
+  - Category Screen
+  - @author    ThemesBuckets <themebucketbd@gmail.com>
+  - @copyright Copyright (c) 2020
+  - @license   ThemesBuckets
+-->
+
+<!-- Header -->
+<ion-header class="ion-no-border">
+  <ion-toolbar color="color1">
+
+    <!-- Side menu option -->
+    <ion-buttons [slot]="this.id_lang == 1 ? 'start' : 'end'">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Page tile -->
+    <ion-title class="ion-text-center" *ngIf="id_lang == 1 else arabicTitle">Categories</ion-title>
+    <ng-template #arabicTitle>
+      <ion-title class="ion-text-center">التصنيفات</ion-title>
+    </ng-template>
+
+    <!-- Cart Button Option -->
+    <ion-buttons [slot]="this.id_lang == 1 ? 'end' : 'start'">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Main Contents -->
+<ion-content id="category" class="ion-padding">
+
+  <!-- Category View Options -->
+  <div class="ion-text-end categories_btns" *ngIf="id_lang == 1 else arabicButtonsTemplate">
+    <div class="back" >
+      <ion-back-button color="color1" default-href="" text="" icon="arrow-back" routerLink="/tabs/tab1"
+       routerDirection="root">
+      </ion-back-button>
+    </div> 
+    <div class="options">
+      <!-- One Column Option -->
+      <ion-button fill="clear" [color]="oneColumn ? 'color1' : 'color2'" class="ion-no-padding" (click)="showOneColumn()">
+        <ion-icon slot="icon-only" name="square"></ion-icon>
+      </ion-button>
+
+      <!-- Grid View Option -->
+      <ion-button fill="clear" [color]="grid ? 'color1' : 'color2'" class="ion-no-padding" (click)="showGrid()">
+        <ion-icon slot="icon-only" name="grid"></ion-icon>
+      </ion-button>
+
+      <!-- List view option -->
+      <ion-button fill="clear" [color]="list ? 'color1' : 'color2'" class="ion-no-padding" (click)="showList()">
+        <ion-icon slot="icon-only" name="list"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <ng-template #arabicButtonsTemplate>
+    <div class="ion-text-end categories_btns ar">
+      <div class="options">
+        <!-- One Column Option -->
+        <ion-button fill="clear" [color]="oneColumn ? 'color1' : 'color2'" class="ion-no-padding" (click)="showOneColumn()">
+          <ion-icon slot="icon-only" name="square"></ion-icon>
+        </ion-button>
+  
+        <!-- Grid View Option -->
+        <ion-button fill="clear" [color]="grid ? 'color1' : 'color2'" class="ion-no-padding" (click)="showGrid()">
+          <ion-icon slot="icon-only" name="grid"></ion-icon>
+        </ion-button>
+  
+        <!-- List view option -->
+        <ion-button fill="clear" [color]="list ? 'color1' : 'color2'" class="ion-no-padding" (click)="showList()">
+          <ion-icon slot="icon-only" name="list"></ion-icon>
+        </ion-button>
+      </div>
+      <div class="back" >
+        <ion-back-button color="color1" default-href="" text="" icon="arrow-forward" routerLink="/tabs/tab1"
+         routerDirection="root">
+        </ion-back-button>
+      </div> 
+    </div>
+  </ng-template>
+  <!-- End Category View Options -->
+
+  <!-- Grid View Contents -->
+  <ion-grid>
+    <ion-row *ngIf="grid">
+      <ion-col size="6" *ngFor="let item of categories">
+        <ion-card class="ion-no-padding ion-no-margin card" routerLink="/subcategory/{{item['id']}}" routerDirection="forward">
+          <ion-img src="https://www.bs.version-recette.com/img/c/{{item.id}}.jpg" class="category_img"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle class="category_title">{{item.name[id_lang - 1].value}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- One COlumn View Contents -->
+    <ion-row *ngIf="oneColumn">
+      <ion-col size="12" *ngFor="let item of categories">
+        <ion-card class="ion-no-padding ion-no-margin card" routerLink="/tabs/products" routerDirection="root">
+          <ion-img src="https://www.bs.version-recette.com/img/c/{{item.id}}.jpg" class="category_img"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle class="category_title">{{item.name[id_lang - 1].value}}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- List View Contents -->
+  <ion-list lines="none" *ngIf="list">
+    <ion-item class="ion-padding-bottom" *ngFor="let item of categories" routerLink="/tabs/products"
+      routerDirection="root">
+      <ion-thumbnail slot="start">
+        <ion-img src="https://www.bs.version-recette.com/img/c/{{item.id}}.jpg" class="category_img"></ion-img>
+      </ion-thumbnail>
+
+      <ion-label>
+        <ion-card-subtitle class="category_title">{{item.name[id_lang - 1].value}}</ion-card-subtitle>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

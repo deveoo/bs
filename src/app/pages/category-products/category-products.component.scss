@@ -1,0 +1,34 @@
+.loader {
+    color: green;
+}
+.card {
+    height: 250px;   
+}
+.product_img {
+    display: block;
+    margin: auto;
+    height: 150px;
+}
+.categories_btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.categories_btns.ar {
+    display: grid;
+    grid-template-columns: 33% 15%;
+    align-items: center;
+    justify-content: space-between;
+}
+.on-c-product-name {
+    color: #63113f;
+}
+.on-c-card {
+    max-height: 100%;
+}
+.top ion-back-button {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    z-index: 99;
+}

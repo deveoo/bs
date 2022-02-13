@@ -1,0 +1,115 @@
+<ion-header class="ion-no-border" *ngIf="id_lang == 1 else arabicHeader">
+  <ion-toolbar>
+    <ion-title mode="ios">LOGIN</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="color1" default-href="" text="" icon="arrow-back" (click)="goBack()">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ng-template #arabicHeader>
+  <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title mode="ios">تسجيل الدخول</ion-title>
+      <ion-buttons slot="end">
+        <ion-back-button color="color1" default-href="" text="" icon="arrow-forward" (click)="goBack()">
+        </ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ng-template>
+
+<ion-content id="signin" fullscreen *ngIf="id_lang == 1 else arabicTemplate">
+
+  <div class="section_two ion-padding">
+    <img class="ion-padding logo" src="assets/images/buqsha-store-logo.jpeg" />
+
+    <form class="ion-padding" [formGroup]="loginForm">
+      <ion-item>
+        <ion-label>
+          <ion-icon name="mail" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="text" formControlName="email" placeholder="Email"></ion-input>
+      </ion-item>
+      <div class="error-container" *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+        <span *ngIf="loginForm.get('email').errors.required">
+          Email is required
+        </span>
+        <span *ngIf="loginForm.get('email').errors.pattern">
+          Please enter a valid email address
+        </span>
+      </div>
+
+      <ion-item class="ion-padding-top">
+        <ion-label>
+          <ion-icon name="eye" color="color2"></ion-icon>
+        </ion-label>
+        <ion-input type="password" formControlName="password" placeholder="password"></ion-input>
+      </ion-item>
+
+      <div class="buttons ion-padding-top">
+        <ion-button expand="block" color="color1" (click)="onSignIn()">
+          <ion-text><strong>SIGN IN</strong></ion-text>
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+  <div class="section_three ion-text-center">
+    <ion-button fill="clear" color="color2">
+      <span>Forget Password ?</span>
+    </ion-button>
+    <ion-button fill="clear" color="color2" routerLink="/register" routerDirection="root">
+      <span>Don't have an account? <b>Sign Up</b></span>
+    </ion-button>
+  </div>
+</ion-content>
+
+<ng-template #arabicTemplate>
+  <ion-content id="signin" fullscreen>
+
+    <div class="section_two ion-padding">
+      <img class="ion-padding logo" src="assets/images/buqsha-store-logo.jpeg" />
+  
+      <form class="ion-padding" [formGroup]="loginForm">
+        <ion-item class="ion-text-end">
+          <ion-input type="text" class="ar-input" formControlName="email" placeholder="البريد الالكتروني"></ion-input>
+          <ion-label>
+            <ion-icon name="mail" color="color2"></ion-icon>
+          </ion-label>
+        </ion-item>
+        <div class="error-container" *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+          <span *ngIf="loginForm.get('email').errors.required" class="float">
+            البريد الالكتروني مطلوب
+          </span>
+          <span *ngIf="loginForm.get('email').errors.pattern" class="float">
+            يرجى إدخال عنوان بريد إلكتروني صالح
+          </span>
+        </div>
+  
+        <ion-item class="ion-padding-top ion-text-end">
+          <ion-input type="password" class="ar-input" formControlName="password" placeholder="كلمه السر"></ion-input>
+          <ion-label>
+            <ion-icon name="eye" color="color2"></ion-icon>
+          </ion-label>
+        </ion-item>
+  
+        <div class="buttons ion-padding-top">
+          <ion-button expand="block" color="color1" (click)="onSignIn()">
+            <ion-text><strong>تسجيل الدخول</strong></ion-text>
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  
+    <div class="section_three ion-text-center">
+      <ion-button fill="clear" color="color2">
+        <span>نسيت كلمة المرور؟</span>
+      </ion-button>
+      <ion-button fill="clear" color="color2" routerLink="/register" routerDirection="root">
+        <span>ليس لديك حساب؟ <b>اشتراك</b></span>
+      </ion-button>
+    </div>
+  </ion-content>
+</ng-template>

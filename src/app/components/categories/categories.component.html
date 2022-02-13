@@ -1,0 +1,32 @@
+<div id="categories">
+  <ion-item-divider color="white" class="ion-padding" [class]="id_lang == 1 ? 'pr' : ''">
+    <ion-label color="dark" class="text-bold" *ngIf="id_lang == 1 else arabicLabel">Categories</ion-label>
+    <ion-button *ngIf="id_lang == 1 else arabicButton" class="ion-margin-end" size="small" slot="end" color="color1" routerLink="/displayAll/categories"
+      routerDirection="root">Sell All</ion-button>
+  </ion-item-divider>
+  <ion-slides *ngIf="categories.length > 0" [options]="slideOpts" class="ion-padding-top">
+    <ion-slide *ngFor="let item of categories.slice(0,10)">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-card class="ion-no-margin" routerLink="/tabs/tab2" routerDirection="root">
+              <div class="card-img" [style.background-image]="'url(https://www.bs.version-recette.com/img/c/'+ item.id +'.jpg)'"></div>
+              <ion-card-header>
+                <ion-card-title class="ion-padding-bottom"> {{item.name[id_lang - 1].value}}</ion-card-title>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  
+</div>
+
+<ng-template #arabicLabel>
+  <ion-label color="dark" class="text-bold flr">التصنيفات</ion-label>
+</ng-template>
+<ng-template #arabicButton>
+  <ion-button class="ion-margin-end" size="small" slot="start" color="color1" routerLink="/displayAll/categories"
+  routerDirection="root">إظهار الكل</ion-button>
+</ng-template>

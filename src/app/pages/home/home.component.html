@@ -1,0 +1,60 @@
+<!-- Header -->
+<ion-header [translucent]="true" class="ion-no-border" *ngIf="id_lang == 1 else arabicMenu">
+  <ion-toolbar class="login-logo" color="color1">
+
+    <!-- Menu Option -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <!-- Title of the app -->
+    <img mode="ios" src="assets/images/buqsha.png" alt="logo">
+
+    <!-- Cart Button Option -->
+    <ion-buttons slot="end">
+      <ion-button color="white" (click)="gotoCartPage()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ng-template #arabicMenu>
+  <ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar class="login-logo" color="color1">
+      <!-- Title of the app -->
+      <img mode="ios" src="assets/images/buqsha.png" alt="logo">
+      <!-- Cart Button Option -->
+      <ion-buttons slot="start">
+        <ion-button color="white" (click)="gotoCartPage()">
+          <ion-icon name="cart"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+        <!-- Menu Option -->
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ng-template>
+
+<!-- Contents -->
+<ion-content id="home" fullscreen>
+
+  <!-- Search bar -->
+  <app-searchbar></app-searchbar>
+
+  <!-- Top Banner Slider -->
+  <app-home-top-slider></app-home-top-slider>
+
+  <!-- Categories -->
+  <app-categories></app-categories>
+
+  <!-- Featured Products -->
+  <app-featured-products></app-featured-products>
+
+  <!-- Hot Deals -->
+  <app-hot-deals></app-hot-deals>
+
+</ion-content>
